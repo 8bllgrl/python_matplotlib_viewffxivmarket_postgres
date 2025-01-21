@@ -1,18 +1,18 @@
+import os
 import psycopg2
 
 def connect_to_database():
-    # Connect to your PostgreSQL database
     conn = psycopg2.connect(
-        dbname="ffxivmarkets",
-        user="postgres",
-        password="Mew_&_Kuromi.",
-        host="localhost",
-        port="5432"
+        dbname=os.environ.get('DB_NAME'),
+        user=os.environ.get('DB_USER'),
+        password=os.environ.get('DB_PASSWORD'),
+        host=os.environ.get('DB_HOST'),
+        port=os.environ.get('DB_PORT')
     )
     return conn
 
 def fetch_sales_data_nameless(conn):
-    # Fetch sales data from the database
+
     cursor = conn.cursor()
     cursor.execute("SELECT itemid, saletimestamp::date AS sale_date, priceperunit, quantity FROM ffxiv_sales")
     sales_data = cursor.fetchall()
@@ -20,7 +20,7 @@ def fetch_sales_data_nameless(conn):
     return sales_data
 
 def fetch_sales_data(conn):
-    # Fetch sales data along with item names from the database
+
     cursor = conn.cursor()
     cursor.execute("""
         SELECT ffsales.itemid, inames.itemname, ffsales.saletimestamp::date AS sale_date,

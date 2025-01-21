@@ -4,18 +4,7 @@ import os
 
 import psycopg2
 
-# def connect_to_database():
-#     # Connect to your PostgreSQL database
-#     conn = psycopg2.connect(
-#         dbname="ffxivmarkets",
-#         user="postgres",
-#         password="Mew_&_Kuromi.",
-#         host="localhost",
-#         port="5432"
-#     )
-#     return conn
 def connect_to_database():
-    # Connect to your PostgreSQL database
     conn = psycopg2.connect(
         dbname=os.environ.get('DB_NAME'),
         user=os.environ.get('DB_USER'),
@@ -27,7 +16,6 @@ def connect_to_database():
 
 
 def fetch_sales_data_nameless(conn):
-    # Fetch sales data from the database
     cursor = conn.cursor()
     cursor.execute("SELECT itemid, saletimestamp::date AS sale_date, priceperunit, quantity FROM ffxiv_sales")
     sales_data = cursor.fetchall()
@@ -35,7 +23,6 @@ def fetch_sales_data_nameless(conn):
     return sales_data
 
 def fetch_sales_data(conn):
-    # Fetch sales data along with item names from the database
     cursor = conn.cursor()
     cursor.execute("""
         SELECT ffsales.itemid, inames.itemname, ffsales.saletimestamp::date AS sale_date,
@@ -49,10 +36,8 @@ def fetch_sales_data(conn):
 
 
 def fetch_sales_data_w_days(conn, days_ago):
-    # Calculate the start date based on the number of days ago
     start_date = datetime.now() - timedelta(days=days_ago)
 
-    # Fetch sales data along with item names from the database starting from the calculated start date
     cursor = conn.cursor()
     cursor.execute("""
         SELECT ffsales.itemid, inames.itemname, ffsales.saletimestamp::date AS sale_date,

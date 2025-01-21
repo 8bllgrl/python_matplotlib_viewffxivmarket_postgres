@@ -6,9 +6,7 @@ from data_processor import calculate_daily_profits, plot_profit_graph_with_7_day
 
 
 def main():
-    # Connect to the database
     conn = connect_to_database()
-
     sales_data = fetch_sales_data_avg_price_by_item(conn)
     conn.close()
     daily_profits, item_names = calculate_daily_profits_avg_ppu(sales_data)

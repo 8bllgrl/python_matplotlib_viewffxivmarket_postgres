@@ -11,16 +11,10 @@ def plot_profit_graph(profits):
     x_new = np.linspace(x[0], x[-1], 100)
     y_new = f(x_new)
 
-    # Set the figure size to be wider
-    plt.figure(figsize=(12, 6))  # Adjust the width and height as needed
-
-    # Plot the original points
+    plt.figure(figsize=(12, 6))
     plt.scatter(x, y, color='blue', label='Profit', zorder=5)
-
-    # Plot the curved line
     plt.plot(x_new, y_new, color='green', linestyle='-', label='Curve Fit', zorder=4)
 
-    # Add gridlines and labels
     plt.grid(True)
     plt.xlabel('Days')
     plt.ylabel('Profit')
