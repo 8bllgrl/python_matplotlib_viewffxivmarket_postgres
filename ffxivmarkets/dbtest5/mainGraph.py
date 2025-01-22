@@ -8,8 +8,6 @@ def mainGraph():
     sales_data = fetch_sales_data(conn)
     conn.close()
     daily_profits, item_names = calculate_daily_profits(sales_data)
-    # Plot profit graph with 7-day moving averages
-    # plot_profit_graph_with_7_day_averages(daily_profits, item_names)
     plot_profit_graph(daily_profits, item_names)
 
 
