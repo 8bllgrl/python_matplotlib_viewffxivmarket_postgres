@@ -1,6 +1,9 @@
 Visualizes db into a graph.
 Choice between bars and line graph.
 
+## the diagram of how it works
+![diagrammarket](https://github.com/user-attachments/assets/a66871a2-c0c2-4fcc-9783-2bd956bd4250)
+
 
 ## Images
 ![Screenshot 2025-01-21 093123](https://github.com/user-attachments/assets/6dcb58eb-b399-4e42-b514-4d1121c6daed)
